@@ -1,0 +1,15 @@
+NO north.xpm
+EA east.xpm
+SO south.xpm
+WE west.xpm
+R 640 480
+F 220,100,0
+C 225,30,0
+S sprite.xpm
+
+1111111
+10S0001
+1020001
+1000001
+1000201
+1111111
