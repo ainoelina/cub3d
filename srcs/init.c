@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/02 13:52:41 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/03/29 10:05:02 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/05 14:47:31 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@ void	init_textures(t_text *text)
 	text->ceiling = 0;
 }
 
-void	init_map(t_map *map)
-{
-	map->y = 0;
-	map-> x = 0;
-	map->sprite = 0;
-	map->map = NULL;
-}
-
 void	init_param(char *file)
 {
 	t_param		p;
@@ -42,8 +34,7 @@ void	init_param(char *file)
 	t_img		img;
 	t_win		win;
 	t_text		text;
-	t_map		map;
-	t_sprites	sprite;
+//	t_sprites	sprite;
 
 	p.err = 0;
 	mlx.ptr = NULL;
@@ -53,11 +44,9 @@ void	init_param(char *file)
 	win.width = 0;
 	win.heigth = 0;
 	win.res_check = 0;
-	sprite.spr = NULL;
-	init_map(&map);
+//	sprite.spr = NULL;
 	init_textures(&text);
-	p.sprites = sprite;
-	p.map = map;
+//	p.sprites = sprite;
 	p.mlx = mlx;
 	p.img = img;
 	p.win = win;

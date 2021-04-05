@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/18 10:38:56 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/03/31 12:56:33 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/05 14:58:25 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@
 # define PLAYER_DOUBLE -15
 # define SPRITE_MALLOC -16
 # define BUF_MALLOC -17
+# define MLX_FAIL -18
 
 /*
 ** ~~~~~~~~~ STRUCTS ~~~~
@@ -101,10 +102,12 @@ typedef struct s_img
 
 typedef struct s_map
 {
-	int		y;
+	double	time;
+	double	time_old;
 	int		x;
-	int		sprite;
-	char	**map;
+	int		y;
+	int		x_old;
+	int		y_old;
 }				t_map;
 
 typedef struct s_win
@@ -121,15 +124,9 @@ typedef struct s_pos
 	int		y;
 }				t_pos;
 
-typedef struct s_dir
-{
-	int		x;
-	int		y;
-}				t_dir;
-
 typedef struct s_text
 {
-	int			*data;
+	int					*data;
 	int					sizeline;
 	int					heigth;
 	unsigned int		floor;
@@ -242,7 +239,8 @@ typedef struct s_rays
 	double	x_side;
 	double	y_side;
 	double	perp_wall;
-	double	*buf;
+	double	buf[4000];
+	double	spritedist;
 	double	w;
 	int		x_step;
 	int		y_step;
@@ -250,8 +248,6 @@ typedef struct s_rays
 	int		y_map;
 	int		hit;
 	int		side;
-	int		x_hit;
-	int		y_hit;
 }				t_rays;
 
 typedef struct s_param
@@ -262,7 +258,6 @@ typedef struct s_param
 	t_text		text;
 	t_map		map;
 	t_pos		pos;
-	t_dir		dir;
 	t_world		world;
 	t_pl		pl;
 	t_sprites	sprites;
@@ -276,7 +271,6 @@ typedef struct s_param
 	int			err;
 	int			ray;
 	int			txt;
-
 }				t_param;
 
 /*
@@ -287,6 +281,7 @@ typedef struct s_param
 ** texture & xpm
 */
 void	handle_textures(t_param *p);
+void	my_mlx_pixel_put(t_param *p, int x, int y, unsigned int color);
 
 /*
 ** ~~~~~~~~~ BASIC FUNCTIONS ~~~~

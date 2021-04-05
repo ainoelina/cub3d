@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/16 10:54:03 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/05 10:14:17 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/05 15:07:02 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,22 @@ int	count_sprites(t_param *p)
 {
 	int	i;
 	int	j;
-	int	count;
+	int	sprites;
 
 	i = 0;
-	count = 0;
+	sprites = 0;
 	while (i < p->world.max_row)
 	{
 		j = 0;
 		while (j < p->world.max_col)
 		{
 			if (p->world.map[i][j] == '2')
-			{
-				printf("map line %s\n", p->world.map[i]);
-				count++;
-			}
+				sprites++;
 			j++;
 		}
 		i++;
 	}
-	return (count);
+	return (sprites);
 }
 
 void	malloc_sprites(t_param *p, t_spr *sprites)
@@ -51,12 +48,12 @@ t_spr	*parse_sprites(t_param *p)
 {
 	int		i;
 	int		j;
-	t_spr	*ptr_sprite;
+	t_spr	*sprt;
 	int		pos;
 
 	p->sp_num = count_sprites(p);
-	ptr_sprite = (malloc(sizeof(t_spr) * p->sp_num));
-	if (!ptr_sprite)
+	sprt = (malloc(sizeof(t_spr) * p->sp_num));
+	if (!sprt)
 		error_handling(SPRITE_MALLOC, p);
 	p->sp_order = (malloc(sizeof(int) * p->sp_num));
 	if (!p->sp_order)
@@ -71,13 +68,13 @@ t_spr	*parse_sprites(t_param *p)
 		{
 			if (p->world.map[i][j] == '2')
 			{
-				ptr_sprite[pos].x = i;
-				ptr_sprite[pos].y = j;
+				sprt[pos].x = i;
+				sprt[pos].y = j;
 				pos++;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (ptr_sprite);
+	return (sprt);
 }

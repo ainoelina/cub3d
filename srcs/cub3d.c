@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/18 11:00:07 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/03/31 13:12:37 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/05 14:58:45 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,13 @@ int 	update(t_param *p)
 
 void	start_point(t_param p, char *file)
 {
-	printf("\nthis is START POINT\n");
 	p.mlx.ptr = mlx_init();
+	if (!p.mlx.ptr)
+		error_handling(MLX_FAIL, &p);
 	if (parsing(&p, file) == -1)
 		close_game(&p);
-//	printf("texture path now is %s\n", p.text.n_txt);
 	handle_textures(&p);
 	p.win.ptr = mlx_new_window(p.mlx.ptr, p.win.width, p.win.heigth, "cub3d");
-	//img_to_win(&p);
-//	raycast(&p);
-//	printf("wehre is the problemmmm\n");
 	mlx_hook(p.win.ptr, 2, 0, key, &p);
 	mlx_hook(p.win.ptr, 17, 0, close_game, &p);
 	mlx_loop_hook(p.mlx.ptr, update, &p);

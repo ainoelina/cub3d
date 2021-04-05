@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/22 10:10:40 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/02 09:22:39 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/05 14:24:10 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,6 @@ void	walls(t_param *p)
 void	raycast(t_param *p)
 {
 	p->ray = 0;
-	p->rays.buf = malloc(sizeof(double) * p->win.width + 1);
-	if (!p->rays.buf)
-		error_handling(BUF_MALLOC, p);
 	while (p->ray < p->win.width)
 	{
 		rays(p);

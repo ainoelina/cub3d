@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/08 13:40:55 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/03/31 13:11:37 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/05 15:11:25 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	parsing(t_param *p, char *file)
 	check_input(p);
 	parse_map(p, map_array);
 	p->sprites.spr = parse_sprites(p);
-//	printf("sprite row is %p\n", p->sprites.spr);
+	printf("sprite thing now %f\n", p->sprites.spr->x);
+	printf("sprite thing now %f\n", p->sprites.spr->y);
 	return (1);
 }

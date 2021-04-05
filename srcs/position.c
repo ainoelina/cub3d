@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/03 11:36:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/03/31 12:37:59 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/05 11:33:06 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ void	init_player(char c, int x, int y, t_param *p)
 	p->pl.r = 0;
 	p->pl.r_rot = 0;
 	p->pl.l_rot = 0;
+	printf("player x_dir is %f\n", p->pl.x_dir);
+	printf("player y_dir is %f\n", p->pl.y_dir);
+	printf("player x_plane is %f\n", p->pl.x_plane);
+	printf("player y_plane is %f\n", p->pl.y_plane);
 }
 
 int	check_char(char	c, int x, int y, t_param *p)
