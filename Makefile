@@ -6,7 +6,7 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/03/01 09:11:19 by avuorio       #+#    #+#                  #
-#    Updated: 2021/03/30 14:31:17 by avuorio       ########   odam.nl          #
+#    Updated: 2021/04/12 20:58:58 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,22 +21,15 @@ MLX_FLAGS	= -lmlx -framework OpenGL -framework AppKit
 HEADER		= cub3d.h
 
 SRCS		= cub3d.c \
-				init.c \
-				parse.c parse_win.c parse_texture.c parse_map.c parse_sprites.c\
-				handle_textures.c \
-				raycast.c draw.c \
-				sprites.c \
-				checks.c \
-				position.c \
-				keys.c \
-				close.c \
-				utils.c \
-				gnl/gnl.c gnl/gnl_utils.c \
-				2dmap.c
+				init.c checks.c actions.c errors.c utils.c \
+				gnl.c gnl_utils.c \
+				parse.c parse_map.c parse_position.c \
+				parse_texture.c parse_screen.c parse_sprite.c \
+				move.c raycast.c draw.c
 
-FILES		= $(addprefix srcs/, $(SRCS))
+# FILES		= $(addprefix srcs/, $(SRCS))
 
-OBJS		= $(FILES:%.c=%.o)
+OBJS		= $(SRCS:%.c=%.o)
 
 all: $(NAME)
 

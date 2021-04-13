@@ -6,11 +6,11 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/29 14:55:41 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/03/09 17:13:13 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/07 13:41:59 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 char	*null_return(char *string)
 {
