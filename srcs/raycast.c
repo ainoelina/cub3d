@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/12 14:38:31 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/13 17:51:52 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/14 10:36:58 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,5 @@ void	raycast(t_all *p)
 		draw(p, p->walls, p->walls->start, p->walls->end);
 		p->stripe++;
 	}
+	handle_sprites(p, p->pl, p->mlx);
 }

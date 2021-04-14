@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/06 17:07:35 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/13 17:59:43 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/14 16:12:57 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*
 ** ~~~~~~~~~ LIBRARIES ~~~~
 */
-# include "mlx/mlx.h"
+# include "../mlx/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -119,21 +119,6 @@ typedef struct s_texture
 	int				spr_h;
 	int				spr_w;
 	int				num;
-
-	// int	n_w;
-	// int e_w;
-	// int s_w;
-	// int w_w;
-	// int n_sb;
-	// int e_sb;
-	// int s_sb;
-	// int w_sb;
-	// int n_ed;
-	// int e_ed;
-	// int s_ed;
-	// int w_ed;
-	// int sp_ed;
-	// int sp_sb;
 }	t_texture;
 
 typedef struct s_map
@@ -183,21 +168,21 @@ typedef struct s_walls
 typedef struct s_rays
 {
 	double	buf[4000];
-	double	x_dir; /* ray direction */
+	double	x_dir;
 	double	y_dir;
-	double	x_delta; /* length of ray from one x or y-side to next x or y-side */
+	double	x_delta;
 	double	y_delta;
-	double	x_side; /* length of ray from current position to x or y side */
+	double	x_side;
 	double	y_side;
-	double	wall_dist; /* distance of pperpendicular ray */
-	double	wall_hit; /* where wall is hit */
+	double	wall_dist;
+	double	wall_hit;
 	double	wall;
 	int		x_map;
 	int		y_map;
-	int		x_step; /* what direction to step in x or y-direction */
+	int		x_step;
 	int		y_step;
-	int		hit; /* did we hit a wall */
-	int		side; /* was a NS or WE wall hit */
+	int		hit;
+	int		side;
 }	t_rays;
 
 typedef struct s_drawsprite
@@ -206,15 +191,15 @@ typedef struct s_drawsprite
 	double	y_sprite;
 	double	x_transf;
 	double	y_transf;
-	double	invdet; /* inverse camera matrix */
-	int		screen;
+	double	invdet;
+	int		scr;
 	int		width;
 	int		heigth;
 	int		x_start;
 	int		x_end;
 	int		y_start;
 	int		y_end;
-	int		x_text; /* IS NECESSARY? */
+	int		x_text;
 	int		y_text;
 	int		x;
 	int		y;
@@ -315,5 +300,7 @@ void		define_walls(t_walls *walls, t_all *p);
 void		define_texture(t_texture *txt, t_walls *walls);
 void		floor_ceiling(t_all *p);
 void		draw_stripe(t_walls *walls, t_mlx *mlx, t_all *p, int stripe);
+void		handle_sprites(t_all *p, t_player *pl, t_mlx *mlx);
+void		draw_sprites(t_drawsprite *spr, t_mlx *mlx, t_all *p);
 
 #endif

@@ -1,8 +1,8 @@
-NO north.xpm
-EA east.xpm
-SO south.xpm
-WE west.xpm
-S sprite.xpm
+NO ./textures/north.xpm
+EA ./textures/east.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+S ./textures/sprite.xpm
 R 640 480
 F 102,102,255
 C 186,235,245

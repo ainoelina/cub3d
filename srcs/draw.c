@@ -6,16 +6,42 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/12 20:36:09 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/13 16:56:20 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/14 15:39:06 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-** ray->wall defined where the wall is hit
-** getting x coordinate of texture (walls->texture)
+** draw_sprites loops through every vertical stripe of the sprite on screen.
 */
+
+void	draw_sprites(t_drawsprite *spr, t_mlx *mlx, t_all *p)
+{
+	spr->x = spr->x_start;
+	while (spr->x < spr->x_end)
+	{
+		spr->x_text = (int)(256 * (spr->x - (-spr->width / 2 + spr->scr))
+				* p->txt->spr_w / spr->width) / 256;
+		if (spr->y_transf > 0 && spr->x >= 0 && spr->x < mlx->screenw
+			&& spr->y_transf < (float)p->ray->buf[spr->x])
+		{
+			spr->y = spr->y_start;
+			while (spr->y < spr->y_end)
+			{
+				spr->d = spr->y * 256 - mlx->screenh * 128 + spr->heigth * 128;
+				spr->y_text = ((spr->d * p->txt->spr_h) / spr->heigth) / 256;
+				if (*(p->txt->sprite + spr->x_text + spr->y_text
+						* p->txt->spr_sl / 4))
+					*(mlx->img_addr + spr->x + spr->y * mlx->sizeline / 4)
+						= *(p->txt->sprite + spr->x_text + spr->y_text
+							* p->txt->spr_sl / 4);
+				spr->y++;
+			}
+		}
+		spr->x++;
+	}
+}
 
 void 	floor_ceiling(t_all *p)
 {
@@ -45,6 +71,11 @@ void 	floor_ceiling(t_all *p)
 		x++;
 	}
 }
+
+/*
+** ray->wall defined where the wall is hit
+** getting x coordinate of texture (walls->texture)
+*/
 
 void	texturise(t_rays *ray, t_walls *walls)
 {

@@ -6,7 +6,7 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/03/01 09:11:19 by avuorio       #+#    #+#                  #
-#    Updated: 2021/04/12 20:58:58 by avuorio       ########   odam.nl          #
+#    Updated: 2021/04/14 16:10:41 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,11 @@ SRCS		= cub3d.c \
 				gnl.c gnl_utils.c \
 				parse.c parse_map.c parse_position.c \
 				parse_texture.c parse_screen.c parse_sprite.c \
-				move.c raycast.c draw.c
+				move.c raycast.c draw.c draw_sprites.c
 
-# FILES		= $(addprefix srcs/, $(SRCS))
+FILES		= $(addprefix srcs/, $(SRCS))
 
-OBJS		= $(SRCS:%.c=%.o)
+OBJS		= $(FILES:%.c=%.o)
 
 all: $(NAME)
 
