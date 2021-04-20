@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 09:49:34 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/13 17:16:26 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/20 14:37:00 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ int	run_game(t_all *p)
 	init_screen(p->mlx);
 	move(p);
 	raycast(p);
-	mlx_put_image_to_window(p->mlx->mlx_ptr, p->mlx->win_ptr,
-		p->mlx->img_ptr, 0, 0);
+	if (!p->screenshot)
+		mlx_put_image_to_window(p->mlx->mlx_ptr, p->mlx->win_ptr,
+			p->mlx->img_ptr, 0, 0);
 	return (0);
 }
 
@@ -33,9 +34,10 @@ void	start_game(t_all *p, char *cub, int screenshot)
 {
 	parser(p, cub);
 	p->mlx->mlx_ptr = mlx_init();
+	p->screenshot = 0;
 	handle_texture(p, p->txt);
 	if (screenshot == 1)
-		printf("make screenshot\n");
+		make_screenshot(p);
 	p->mlx->win_ptr = mlx_new_window(p->mlx->mlx_ptr, p->mlx->screenw,
 			p->mlx->screenh, "cub3d");
 	mlx_hook(p->mlx->win_ptr, 2, 0, key_pressed, p);

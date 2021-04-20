@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/06 17:07:35 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/14 16:12:57 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/04/20 10:36:41 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,8 +227,15 @@ typedef struct s_all
 	int			*spriteorder;
 	int			spritenum;
 	int			stripe;
+	int			screenshot;
 
 }	t_all;
+
+/*
+** ~~~~~~~~~ BMP SCREENSHOT ~~~~
+*/
+
+void		create_bmp(t_all *p);
 
 /*
 ** ~~~~~~~~~ INIT FUNCTIONS ~~~~
@@ -264,6 +271,7 @@ void		skip_spaces(int *i, char *line);
 void		copy_lines(char **lines, int *index, char **save);
 
 int			my_atoi(char *line, int *i);
+void		make_screenshot(t_all *p);
 
 /*
 ** ~~~~~~~~~ GET_NEXT_LINE ~~~~
@@ -276,6 +284,8 @@ char		*join_strings(char *rest, char *buffer);
 int			minus_return(char *buffer);
 int			get_next_line(int fd, char **line);
 
+
+int	run_game(t_all *p);
 /*
 ** ~~~~~~~~~ PARSING ~~~~
 */
@@ -287,6 +297,7 @@ void		set_resolution(t_all *p, char *line, int *i);
 void		set_colour(t_all *p, char *line, unsigned int *colour, int *i);
 
 t_spr_ptr	*parse_sprites(t_all *p, int i, int j);
+void	init_screen(t_mlx *mlx);
 
 /*
 ** ~~~~~~~~~ RAYCASTING ~~~~
