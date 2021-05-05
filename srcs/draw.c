@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/12 20:36:09 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/14 15:39:06 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/04 11:22:14 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,36 +102,6 @@ void	define_walls(t_walls *walls, t_all *p)
 	if (walls->end >= p->mlx->screenh)
 		walls->end = p->mlx->screenh - 1;
 }
-
-// void	draw_stripe(t_walls *walls, t_mlx *mlx, t_all *p, int stripe)
-// {
-// 	double	step;
-// 	double	pos;
-// 	int		i;
-// 	int		*text;
-
-// 	i = 0;
-// 	step = 1.0 * walls->heigth / walls->line_h;
-// 	pos = (walls->start - p->mlx->screenh / 2 + walls->line_h / 2) * step;
-// 	text = walls->text;
-// 	while (i < walls->start)
-// 	{
-// 		*(mlx->img_addr + stripe + i * mlx->sizeline / 4) = p->txt->ceiling;
-// 		i++;
-// 	}
-// 	while (i <= walls->end)
-// 	{
-// 		*(mlx->img_addr + stripe + i + mlx->sizeline / 4) = *(text
-// 			+ walls->texture + (int)pos * walls->sl / 4);
-// 		pos = pos + step;
-// 		i++;
-// 	}
-// 	while (i < mlx->screenh)
-// 	{
-// 		*(mlx->img_addr + stripe + i * mlx->sizeline / 4) = p->txt->floor;
-// 		i++;
-// 	}
-// }
 
 /*
 ** step counts how much to increase the texture coordinate

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 13:28:06 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/13 17:53:37 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/05 10:39:33 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,18 @@ void	parser(t_all *p, char *cub)
 	if (fd < 0)
 		error_handling(FD, p);
 	save = NULL;
-	p->lines = 0;
 	p->lines = get_lines(p->lines, save, fd, p);
 	close (fd);
 	array = parse_lines(p, p->lines);
 	parse_map(p, array);
 	p->spr = parse_sprites(p, i, j);
-	printf("sprite location is %f, %f\n", p->spr->x, p->spr->y);
-	printf("north: %s,\neast: %s,\nsouth: %s,\nwest: %s.\nsprite: %s.\n",
-		p->txt->north_tex, p->txt->east_tex, p->txt->south_tex,
-		p->txt->west_tex, p->txt->spr_tex);
-	printf("resolution is now %i x %i\n", p->mlx->screenw, p->mlx->screenh);
-	printf("floor color is %x, ceiling is %x\n", p->txt->floor, p->txt->ceiling);
-	printf("player position is now x: %.1f y: %.1f\n", p->pl->x, p->pl->y);
+	free_lines(p);
 }
+
+	// printf("sprite location is %f, %f\n", p->spr->x, p->spr->y);
+	// printf("north: %s,\neast: %s,\nsouth: %s,\nwest: %s.\nsprite: %s.\n",
+	// 	p->txt->north_tex, p->txt->east_tex, p->txt->south_tex,
+	// 	p->txt->west_tex, p->txt->spr_tex);
+	// printf("resolution is now %i x %i\n", p->mlx->screenw, p->mlx->screenh);
+	// printf("floor color is %x, ceiling is %x\n", p->txt->floor, p->txt->ceiling);
+	// printf("player position is now x: %.1f y: %.1f\n", p->pl->x, p->pl->y);

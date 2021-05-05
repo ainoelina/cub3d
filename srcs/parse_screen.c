@@ -6,14 +6,11 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 14:30:48 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/20 14:40:28 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/05 09:55:36 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/* need to still manage resolution bigger than display */
-/* need to still make input checks */
 
 void	convert_colour(int r, int g, int b, unsigned int *colour)
 {
@@ -23,6 +20,15 @@ void	convert_colour(int r, int g, int b, unsigned int *colour)
 	result = (result << 8) + g;
 	result = (result << 8) + b;
 	*colour = result;
+}
+
+void	colour_linecheck(char *line, int *i, t_all *p)
+{
+	while ((line[*i] >= '0' && line[*i] <= '9') || is_space(line[*i]))
+		(*i)++;
+	if (line[*i] != ',')
+		error_handling(COLOUR_INPUT, p);
+	(*i)++;
 }
 
 void	set_colour(t_all *p, char *line, unsigned int *colour, int *i)
@@ -38,14 +44,29 @@ void	set_colour(t_all *p, char *line, unsigned int *colour, int *i)
 	(*i)++;
 	skip_spaces(i, line);
 	red = my_atoi(line, i);
-	(*i)++;
+	colour_linecheck(line, i, p);
 	green = my_atoi(line, i);
-	(*i)++;
+	colour_linecheck(line, i, p);
 	blue = my_atoi(line, i);
 	skip_spaces(i, line);
 	if (red > 255 || green > 255 || blue > 255 || line[*i] != '\0')
 		error_handling(COLOUR_INPUT, p);
 	convert_colour(red, green, blue, colour);
+}
+
+void	resizing_check(t_all *p)
+{
+	int		x;
+	int		y;
+
+	mlx_get_screen_size(p->mlx->mlx_ptr, &x, &y);
+	if (!p->no_resizing)
+	{
+		if (p->mlx->screenw > x)
+			p->mlx->screenw = x;
+		if (p->mlx->screenh > y)
+			p->mlx->screenh = y;
+	}
 }
 
 void	set_resolution(t_all *p, char *line, int *i)
@@ -55,9 +76,14 @@ void	set_resolution(t_all *p, char *line, int *i)
 	p->mlx->resolution = 1;
 	(*i)++;
 	skip_spaces(i, line);
-	p->mlx->screenw = my_atoi(line, i);
-	p->mlx->screenh = my_atoi(line, i);
-	if (p->mlx->screenw <= 0 || p->mlx->screenh <= 0)
+	if (!(line[*i] >= '0' && line[*i] <= '9'))
 		error_handling(RESOLUTION_INVALID, p);
-	mlx_get_screen_size(p->mlx->mlx_ptr, )
+	p->mlx->screenw = my_atoi(line, i);
+	if (!p->mlx->screenw)
+		error_handling(RESOLUTION_INVALID, p);
+	p->mlx->screenh = my_atoi(line, i);
+	if (!p->mlx->screenh)
+		error_handling(RESOLUTION_INVALID, p);
+	if (p->mlx->screenw <= 0 || p->mlx->screenh <= 0 || line[*i] != '\0')
+		error_handling(RESOLUTION_INVALID, p);
 }

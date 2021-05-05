@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/09 11:00:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/13 17:46:32 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/05 13:54:55 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	create_map(t_map *map, char **array, int i, int j)
 		map->y = 0;
 		while (array[i][j])
 		{
-			while (array[i][j] == ' ')
-				j++;
 			if (array[i][j])
 			{
 				map->map[map->x][map->y] = array[i][j];
@@ -33,7 +31,7 @@ void	create_map(t_map *map, char **array, int i, int j)
 			if (last < map->y)
 				last = map->y;
 		}
-		printf("map: %s\n", map->map[map->x]);
+	//	printf("map: %s\n", map->map[map->x]);
 		j = 0;
 		map->x++;
 		i++;
@@ -84,8 +82,6 @@ int	count_xmax(t_all *p, char **array)
 	return (x);
 }
 
-/* need to add error checker function for valid maps */
-
 void	parse_map(t_all *p, char **array)
 {
 	int	i;
@@ -100,5 +96,6 @@ void	parse_map(t_all *p, char **array)
 	initialise_map(p->map);
 	create_map(p->map, array, i, j);
 	parse_position(p);
-	printf("max x is %i and max y is %i\n", p->map->x_max, p->map->y_max);
+//	map_check(p, p->map, p->map->map);
+//	checkmap(p, p->pl->x, p->pl->y);
 }

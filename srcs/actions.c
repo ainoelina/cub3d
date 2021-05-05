@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 12:56:31 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/13 17:17:13 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/05 13:07:19 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,6 @@
 
 int	close_game(t_all *p)
 {
-	int	i;
-
-	free(p->txt->north_tex);
-	free(p->txt->east_tex);
-	free(p->txt->south_tex);
-	free(p->txt->west_tex);
-	free(p->txt->spr_tex);
-	i = 0;
-	if (p->lines)
-	{
-		while (p->lines[i])
-		{
-			free(p->lines[i]);
-			i++;
-		}
-		free(p->lines);
-	}
 	free(p->mlx->mlx_ptr);
 	exit(0);
 	return (1);

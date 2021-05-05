@@ -6,13 +6,13 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/12 14:38:31 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/20 09:46:26 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/04 10:38:48 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_rays(t_rays *ray, t_player *pl, t_all *p)
+void	calculate_rays(t_rays *ray, t_player *pl, t_all *p)
 {
 	pl->camera = 2 * p->stripe / (double)p->mlx->screenw - 1;
 	ray->x_dir = pl->x_dir + pl->x_plane * pl->camera;
@@ -77,7 +77,7 @@ void	walls(t_rays *ray, t_player *pl, t_walls *walls, t_all *p)
 			walls->direction = 'W';
 		else
 			walls->direction = 'E';
-		ray->wall_dist = (ray->y_map - pl->y + (1 / ray->y_step)
+		ray->wall_dist = (ray->y_map - pl->y + (1 - ray->y_step)
 				/ 2) / ray->y_dir;
 		ray->wall = pl->x + ray->wall_dist * ray->x_dir;
 	}
@@ -100,7 +100,7 @@ void	raycast(t_all *p)
 	floor_ceiling(p);
 	while (p->stripe < p->mlx->screenw)
 	{
-		init_rays(p->ray, p->pl, p);
+		calculate_rays(p->ray, p->pl, p);
 		steps(p->ray, p->pl);
 		hits(p->map, p->ray);
 		walls(p->ray, p->pl, p->walls, p);

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 09:49:34 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/20 14:37:00 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/05 10:27:56 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int	run_game(t_all *p)
 
 void	start_game(t_all *p, char *cub, int screenshot)
 {
+	if (screenshot == 1)
+		p->no_resizing = 1;
+	p->lines = 0;
 	parser(p, cub);
 	p->mlx->mlx_ptr = mlx_init();
 	p->screenshot = 0;
@@ -55,6 +58,6 @@ int	main(int argc, char *argv[])
 		&& save_check(argv[2], "--save"))
 		init_all(argv[1], 1);
 	else
-		printf("ERROR:\nInvalid arguments.\n");
+		printf("Error\nInvalid arguments.\n");
 	return (0);
 }

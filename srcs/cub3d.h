@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/06 17:07:35 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/20 10:36:41 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/05 11:36:49 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ typedef struct s_all
 	int			spritenum;
 	int			stripe;
 	int			screenshot;
+	int			no_resizing;
 
 }	t_all;
 
@@ -238,13 +239,6 @@ typedef struct s_all
 void		create_bmp(t_all *p);
 
 /*
-** ~~~~~~~~~ INIT FUNCTIONS ~~~~
-*/
-void		init_all(char *cub, int screenshot);
-void		initialise_map(t_map *map);
-void		handle_texture(t_all *p, t_texture *txt);
-
-/*
 ** ~~~~~~~~~ GAME ACTIONS ~~~~
 */
 
@@ -252,8 +246,20 @@ int			key_pressed(int key, t_all *p);
 int			key_released(int key, t_all *p);
 int			close_game(t_all *p);
 int			move(t_all *p);
+int			run_game(t_all *p);
+
 
 void		start_game(t_all *p, char *cub, int screenshot);
+void		make_screenshot(t_all *p);
+
+/*
+** ~~~~~~~~~ INIT FUNCTIONS ~~~~
+*/
+void		init_all(char *cub, int screenshot);
+void		initialise_map(t_map *map);
+void		init_screen(t_mlx *mlx);
+void		handle_texture(t_all *p, t_texture *txt);
+
 
 /*
 ** ~~~~~~~~~ CHECK FUNCTIONS ~~~~
@@ -261,17 +267,21 @@ void		start_game(t_all *p, char *cub, int screenshot);
 
 int			save_check(char *argv, char *save);
 int			file_check(char *file, char format);
+int			check_map(t_all *p);
 
 void		error_handling(int error, t_all *p);
+void		map_check(t_all *p, t_map *m, char **map);
+void	checkmap(t_all *p, int x, int y);
 
 /*
 ** ~~~~~~~~~ UTILS ~~~~
 */
 void		skip_spaces(int *i, char *line);
 void		copy_lines(char **lines, int *index, char **save);
+void		free_lines(t_all *p);
 
 int			my_atoi(char *line, int *i);
-void		make_screenshot(t_all *p);
+int			is_space(char c);
 
 /*
 ** ~~~~~~~~~ GET_NEXT_LINE ~~~~
@@ -284,8 +294,6 @@ char		*join_strings(char *rest, char *buffer);
 int			minus_return(char *buffer);
 int			get_next_line(int fd, char **line);
 
-
-int	run_game(t_all *p);
 /*
 ** ~~~~~~~~~ PARSING ~~~~
 */
@@ -297,14 +305,12 @@ void		set_resolution(t_all *p, char *line, int *i);
 void		set_colour(t_all *p, char *line, unsigned int *colour, int *i);
 
 t_spr_ptr	*parse_sprites(t_all *p, int i, int j);
-void	init_screen(t_mlx *mlx);
 
 /*
 ** ~~~~~~~~~ RAYCASTING ~~~~
 */
 
 void		draw(t_all *p, t_walls *walls, int start, int end);
-
 void		texturise(t_rays *ray, t_walls *walls);
 void		raycast(t_all *p);
 void		define_walls(t_walls *walls, t_all *p);

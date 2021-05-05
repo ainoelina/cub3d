@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 09:54:37 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/07 10:31:57 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/05 13:47:10 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,79 @@ int	save_check(char *argv, char *save)
 	}
 	return (0);
 }
+
+void	map_check(t_all *p, t_map *m, char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < m->x_max)
+	{
+		j = 0;
+		while (j < m->y_max)
+		{
+			if ((i == 0 && map[i][j] != '1')
+				|| (i == m->x_max - 1 && map[i][j] != '1')
+				|| (j == 0 && map[i][j] != '1')
+				|| (j == m->y_max - 1 && map[i][j] != '1'))
+				{ printf("invalid char is '%c'\n", map[i][j]);
+				error_handling(MAP_INVALID, p); }
+			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != '2' && map[i][j] != 'A'
+				&& map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'S' && map[i][j] != 'W')
+				{ printf("invalid char is %c\n", map[i][j]);
+				error_handling(MAP_INVALID, p);}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	checkmap(t_all *p, int x, int y)
+{
+	char	**map;
+
+	p->pl->pos_check = 0;
+	map = p->map->map;
+	if (map[x][y] == '1' || map[x][y] == 'O' || map[x][y] == 'X')
+		return ;
+	if (x == 0 || y == 0 || x == p->map->x_max)
+		error_handling(MAP_INVALID, p);
+	if (map[x][y] == 'A')
+		error_handling(MAP_INVALID, p);
+	if (map[x][y] == '0')
+		map[x][y] = 'O';
+	if (map[x][y] == '2')
+		map[x][y] = 'X';
+	checkmap(p, x + 1, y);
+	checkmap(p, x, y + 1);
+	checkmap(p, x - 1, y);
+	checkmap(p, x, y - 1);
+}
+
+// int	check_map(t_all *p)
+// {
+// 	int		i;
+// 	int		j;
+
+// 	i = 0;
+// 	j = 0;
+// 	while (i < p->map->x_max)
+// 	{
+// 		j = 0;
+// 		while (j < p->map->y_max)
+// 		{
+// 			if (p->map->map[i][j] != '1' && i == 0)
+// 				return (-1);
+// 			else if (p->map->map[i][j] != '1' && i == p->map->x_max - 1)
+// 				return (-1);
+// 			else if (p->map->map[i][j] != '1' && j == 0)
+// 				return (-1);
+// 			else if (p->map->map[i][j] != '1' && j == p->map->y_max - 1)
+// 				return (-1);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (1);
+// }

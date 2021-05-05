@@ -6,11 +6,11 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/03/01 09:11:19 by avuorio       #+#    #+#                  #
-#    Updated: 2021/04/20 11:22:43 by avuorio       ########   odam.nl          #
+#    Updated: 2021/05/04 11:29:25 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= cub3d
+NAME		= cub3D
 
 CC 			= clang
 CFLAGS		= -O3 -Wall -Werror -Wextra
