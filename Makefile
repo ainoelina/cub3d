@@ -6,7 +6,7 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/03/01 09:11:19 by avuorio       #+#    #+#                  #
-#    Updated: 2021/05/04 11:29:25 by avuorio       ########   odam.nl          #
+#    Updated: 2021/05/14 14:18:53 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,12 @@ MLX_FLAGS	= -lmlx -framework OpenGL -framework AppKit
 HEADER		= cub3d.h
 
 SRCS		= cub3d.c \
-				init.c checks.c actions.c errors.c utils.c \
+				init.c actions.c errors.c \
+				utils.c utils2.c \
 				gnl.c gnl_utils.c \
 				parse.c parse_map.c parse_position.c \
 				parse_texture.c parse_screen.c parse_sprite.c \
+				checks.c \
 				move.c raycast.c draw.c draw_sprites.c \
 				bitmap.c
 
