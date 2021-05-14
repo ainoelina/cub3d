@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 14:30:48 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/05 09:55:36 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/14 08:38:13 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,13 @@ void	colour_linecheck(char *line, int *i, t_all *p)
 		(*i)++;
 	if (line[*i] != ',')
 		error_handling(COLOUR_INPUT, p);
-	(*i)++;
+	if (line[*i] == ',')
+	{
+		(*i)++;
+		skip_spaces(i, line);
+	}
+	if (!(line[*i] >= '0' && line[*i] <= '9'))
+		error_handling(COLOUR_INPUT, p);
 }
 
 void	set_colour(t_all *p, char *line, unsigned int *colour, int *i)
@@ -49,7 +55,8 @@ void	set_colour(t_all *p, char *line, unsigned int *colour, int *i)
 	colour_linecheck(line, i, p);
 	blue = my_atoi(line, i);
 	skip_spaces(i, line);
-	if (red > 255 || green > 255 || blue > 255 || line[*i] != '\0')
+	if (red > 255 || green > 255 || blue > 255 || line[*i] != '\0'
+		|| !red || !green || !blue)
 		error_handling(COLOUR_INPUT, p);
 	convert_colour(red, green, blue, colour);
 }

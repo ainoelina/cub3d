@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 13:31:29 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/04 12:26:20 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/14 14:04:32 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ void	error_extra(int error)
 		printf("Error\nPlayer position not defined.\n");
 	if (error == MAP_INVALID)
 		printf("Error\nMap input invalid.\n");
+	if (error == COLOUR_MISSING)
+		printf("Error\nMissing floor/ceiling input.\n");
+	if (error == TEXTURE_MISSING)
+		printf("Error\nMissing texture input.\n");
+	if (error == RESOLUTION_MISSING)
+		printf("Error\nMissing resolution input.\n");
+	if (error == MAP_WALLS)
+		printf("Error\nMap not closed by walls.\n");
+	if (error == INVALID_INPUT)
+		printf("Error\nInvalid input in .cub file.\n");
 }
 
 void	error_handling(int error, t_all *p)

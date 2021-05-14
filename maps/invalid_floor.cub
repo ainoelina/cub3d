@@ -1,0 +1,16 @@
+NO ./textures/bluestone.xpm
+EA ./textures/greystone.xpm
+SO ./textures/mossy.xpm
+WE ./textures/north.xpm
+S ./textures/sprite.xpm
+R 640 480
+F 102,102,
+C 186,235,245
+
+1111111111111
+1000000000001
+1001000000001
+1000200000001
+10000000N0001
+1000000000001
+1111111111111

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/06 17:07:35 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/05 11:36:49 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/14 14:18:26 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@
 # define PLAYER_DOUBLE -11
 # define PLAYER_NF -12
 # define MAP_INVALID -13
+# define COLOUR_MISSING -14
+# define TEXTURE_MISSING -15
+# define RESOLUTION_MISSING -16
+# define MAP_WALLS -17
+# define INVALID_INPUT -18
 
 /*
 ** ~~~~~~~~~ DIRECTIONS ~~~~
@@ -267,11 +272,12 @@ void		handle_texture(t_all *p, t_texture *txt);
 
 int			save_check(char *argv, char *save);
 int			file_check(char *file, char format);
-int			check_map(t_all *p);
 
+void		check_map(t_all *p, char **map);
 void		error_handling(int error, t_all *p);
+void		check_input(t_all *p);
 void		map_check(t_all *p, t_map *m, char **map);
-void	checkmap(t_all *p, int x, int y);
+void		checkmap(t_all *p, int x, int y);
 
 /*
 ** ~~~~~~~~~ UTILS ~~~~
@@ -282,6 +288,8 @@ void		free_lines(t_all *p);
 
 int			my_atoi(char *line, int *i);
 int			is_space(char c);
+
+char		*ft_strchr(char *str, char c);
 
 /*
 ** ~~~~~~~~~ GET_NEXT_LINE ~~~~

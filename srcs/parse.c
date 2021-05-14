@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 13:28:06 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/05 10:39:33 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/14 14:50:53 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,32 @@
 ** the map and sprites within map are parsed last.
 */
 
+void	check_validity(char c, char *line, t_all *p)
+{
+	int	i;
+
+	i = 0;
+	printf("line now is %s\n", line);
+	if (!(ft_strchr("RFCNSWE012", c)))
+		error_handling(INVALID_INPUT, p);
+	if ((line[i] == 'N' && line[i + 1] != 'O')
+		|| (line[i] == 'E' && line[i + 1] != 'A')
+		|| (line[i] == 'W' && line[i + 1] != 'E'))
+		error_handling(INVALID_INPUT, p);
+	if ((line[i] == 'S' && (line[i + 1] != 'O' && line[i + 1] != ' ')))
+		error_handling(INVALID_INPUT, p);
+	if ((line[i] == 'F' || line[i] == 'C' || line[i] == 'R')
+		&& line[i + 1] != ' ')
+		error_handling(INVALID_INPUT, p);
+}
+
 int	check_params(char *line, t_all *p)
 {
 	int	i;
 
 	i = 0;
 	skip_spaces(&i, line);
+	check_validity(line[i], line, p);
 	if (line[i] == 'R' && line[i + 1] == ' ')
 		set_resolution(p, line, &i);
 	if (line[i] == 'F' && line[i + 1] == ' ')
@@ -112,6 +132,7 @@ void	parser(t_all *p, char *cub)
 	array = parse_lines(p, p->lines);
 	parse_map(p, array);
 	p->spr = parse_sprites(p, i, j);
+	check_input(p);
 	free_lines(p);
 }
 

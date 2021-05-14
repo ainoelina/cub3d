@@ -6,11 +6,22 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 09:54:37 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/05 13:47:10 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/14 14:04:04 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	check_input(t_all *p)
+{
+	if (p->txt->ceiling == 0 || p->txt->floor == 0)
+		error_handling(COLOUR_MISSING, p);
+	if (!p->txt->north_tex || !p->txt->east_tex || !p->txt->south_tex
+		|| !p->txt->west_tex || !p->txt->spr_tex)
+		error_handling(TEXTURE_MISSING, p);
+	if (p->mlx->screenh == 0 || p->mlx->screenw == 0)
+		error_handling(RESOLUTION_MISSING, p);
+}
 
 int	file_check(char *file, char format)
 {
@@ -62,43 +73,45 @@ void	map_check(t_all *p, t_map *m, char **map)
 		j = 0;
 		while (j < m->y_max)
 		{
-			if ((i == 0 && map[i][j] != '1')
-				|| (i == m->x_max - 1 && map[i][j] != '1')
-				|| (j == 0 && map[i][j] != '1')
-				|| (j == m->y_max - 1 && map[i][j] != '1'))
-				{ printf("invalid char is '%c'\n", map[i][j]);
+			while (map[i][j] == ' ')
+				j++;
+			if ((i == 0 && map[i][j] != '1') || (i == m->x_max
+				&& (map[i][j] != '1' || map[i][j] != 'A')) || (j == 0 && map[i][j] != '1')
+				|| (j == m->y_max && (map[i][j] != '1' || map[i][j] != 'A'))
+				|| (map[i][j] == 'A' && map[i][j - 1] == '0'))
+				{ printf("max x is %i, max y is %i\n", p->map->x_max, p->map->y_max);
+					printf("invalid char is '%c'\ncoordinates are %i, %i\n", map[i][j], i, j);
 				error_handling(MAP_INVALID, p); }
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != '2' && map[i][j] != 'A'
 				&& map[i][j] != 'N' && map[i][j] != 'E' && map[i][j] != 'S' && map[i][j] != 'W')
-				{ printf("invalid char is %c\n", map[i][j]);
-				error_handling(MAP_INVALID, p);}
+				error_handling(MAP_INVALID, p);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	checkmap(t_all *p, int x, int y)
-{
-	char	**map;
+// void	checkmap(t_all *p, int x, int y)
+// {
+// 	char	**map;
 
-	p->pl->pos_check = 0;
-	map = p->map->map;
-	if (map[x][y] == '1' || map[x][y] == 'O' || map[x][y] == 'X')
-		return ;
-	if (x == 0 || y == 0 || x == p->map->x_max)
-		error_handling(MAP_INVALID, p);
-	if (map[x][y] == 'A')
-		error_handling(MAP_INVALID, p);
-	if (map[x][y] == '0')
-		map[x][y] = 'O';
-	if (map[x][y] == '2')
-		map[x][y] = 'X';
-	checkmap(p, x + 1, y);
-	checkmap(p, x, y + 1);
-	checkmap(p, x - 1, y);
-	checkmap(p, x, y - 1);
-}
+// 	p->pl->pos_check = 0;
+// 	map = p->map->map;
+// 	if (map[x][y] == '1' || map[x][y] == 'O' || map[x][y] == 'X')
+// 		return ;
+// 	if (x == 0 || y == 0 || x == p->map->x_max)
+// 		error_handling(MAP_INVALID, p);
+// 	if (map[x][y] == 'A')
+// 		error_handling(MAP_INVALID, p);
+// 	if (map[x][y] == '0')
+// 		map[x][y] = 'O';
+// 	if (map[x][y] == '2')
+// 		map[x][y] = 'X';
+// 	checkmap(p, x + 1, y);
+// 	checkmap(p, x, y + 1);
+// 	checkmap(p, x - 1, y);
+// 	checkmap(p, x, y - 1);
+// }
 
 // int	check_map(t_all *p)
 // {

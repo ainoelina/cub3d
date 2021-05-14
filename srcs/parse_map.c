@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/09 11:00:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/05 13:54:55 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/14 11:52:40 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	create_map(t_map *map, char **array, int i, int j)
 			if (last < map->y)
 				last = map->y;
 		}
-	//	printf("map: %s\n", map->map[map->x]);
+		printf("%2i-map: %s\n", (i + 1), map->map[map->x]);
 		j = 0;
 		map->x++;
 		i++;
@@ -96,6 +96,8 @@ void	parse_map(t_all *p, char **array)
 	initialise_map(p->map);
 	create_map(p->map, array, i, j);
 	parse_position(p);
-//	map_check(p, p->map, p->map->map);
+//	ft_checkmap_end(p->map, p);
+//	check_map(p, p->map->map);
+	map_check(p, p->map, p->map->map);
 //	checkmap(p, p->pl->x, p->pl->y);
 }
