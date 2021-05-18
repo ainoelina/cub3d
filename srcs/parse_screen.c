@@ -6,13 +6,13 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 14:30:48 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/14 08:38:13 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/18 12:02:52 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	convert_colour(int r, int g, int b, unsigned int *colour)
+void	convert_colour(int r, int g, int b, int *colour)
 {
 	unsigned int	result;
 
@@ -37,15 +37,18 @@ void	colour_linecheck(char *line, int *i, t_all *p)
 		error_handling(COLOUR_INPUT, p);
 }
 
-void	set_colour(t_all *p, char *line, unsigned int *colour, int *i)
+void	set_colour(t_all *p, char *line, int *colour, int *i)
 {
 	int	red;
 	int	green;
 	int	blue;
 
-	if (line[*i] == 'F' && p->txt->floor != 0)
+	red = -1;
+	blue = -1;
+	green = -1;
+	if (line[*i] == 'F' && p->txt->floor != -1)
 		error_handling(COLOUR_DOUBLE, p);
-	if (line[*i] == 'C' && p->txt->ceiling != 0)
+	if (line[*i] == 'C' && p->txt->ceiling != -1)
 		error_handling(COLOUR_DOUBLE, p);
 	(*i)++;
 	skip_spaces(i, line);
@@ -56,7 +59,7 @@ void	set_colour(t_all *p, char *line, unsigned int *colour, int *i)
 	blue = my_atoi(line, i);
 	skip_spaces(i, line);
 	if (red > 255 || green > 255 || blue > 255 || line[*i] != '\0'
-		|| !red || !green || !blue)
+		|| red == -1 || green == -1 || blue == -1)
 		error_handling(COLOUR_INPUT, p);
 	convert_colour(red, green, blue, colour);
 }

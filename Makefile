@@ -6,7 +6,7 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/03/01 09:11:19 by avuorio       #+#    #+#                  #
-#    Updated: 2021/05/14 14:18:53 by avuorio       ########   odam.nl          #
+#    Updated: 2021/05/18 17:41:52 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS		= cub3d.c \
 				gnl.c gnl_utils.c \
 				parse.c parse_map.c parse_position.c \
 				parse_texture.c parse_screen.c parse_sprite.c \
-				checks.c \
+				checks.c check_map.c checkmap.c \
 				move.c raycast.c draw.c draw_sprites.c \
 				bitmap.c
 

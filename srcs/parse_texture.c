@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 14:10:23 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/14 14:50:18 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/18 11:51:44 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,21 @@ void	set_texture_path(t_all *p, char *xpm, char **texture)
 	*texture = xpm;
 }
 
+void	check_line(t_all *p, char *line, int *i)
+{
+	int		j;
+	char	*str;
+
+	j = (*i);
+	str = line;
+	while (str[j] != '\0')
+	{
+		if (str[j] == ' ')
+			error_handling(TEXTURE_INVALID, p);
+		j++;
+	}
+}
+
 void	set_texture(t_all *p, char *line, char **texture, int *i)
 {
 	int		j;
@@ -85,8 +100,8 @@ void	set_texture(t_all *p, char *line, char **texture, int *i)
 	(*i) = (*i) + 2;
 	if (*texture != NULL)
 		error_handling(TEXTURE_DOUBLE, p);
-	while (line[*i] == ' ')
-		(*i)++;
+	skip_spaces(i, line);
+	check_line(p, line, i);
 	j = *i;
 	while (line[*i] != ' ' && line[*i] != '\0')
 		(*i)++;

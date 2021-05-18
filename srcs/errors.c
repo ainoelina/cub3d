@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 13:31:29 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/14 14:04:32 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/18 11:51:13 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	error_extra(int error)
 		printf("Error\nMap not closed by walls.\n");
 	if (error == INVALID_INPUT)
 		printf("Error\nInvalid input in .cub file.\n");
+	if (error == TEXTURE_INVALID)
+		printf("Error\nTexture input invalid.\n");
 }
 
 void	error_handling(int error, t_all *p)

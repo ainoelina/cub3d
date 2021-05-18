@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 10:11:11 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/21 10:45:09 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/18 12:02:30 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	init_text(t_all *p, char *cub, int screenshot)
 	txt.south_tex = NULL;
 	txt.west_tex = NULL;
 	txt.spr_tex = NULL;
-	txt.floor = 0;
-	txt.ceiling = 0;
+	txt.floor = -1;
+	txt.ceiling = -1;
 	sprptr = NULL;
 	p->no_resizing = 0;
 	p->walls = &wall;

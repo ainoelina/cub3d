@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 13:28:06 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/14 14:50:53 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/18 13:45:26 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	check_params(char *line, t_all *p)
 	int	i;
 
 	i = 0;
+	printf("%s\n", line);
 	skip_spaces(&i, line);
 	check_validity(line[i], line, p);
 	if (line[i] == 'R' && line[i + 1] == ' ')
@@ -128,7 +129,7 @@ void	parser(t_all *p, char *cub)
 		error_handling(FD, p);
 	save = NULL;
 	p->lines = get_lines(p->lines, save, fd, p);
-	close (fd);
+	close(fd);
 	array = parse_lines(p, p->lines);
 	parse_map(p, array);
 	p->spr = parse_sprites(p, i, j);

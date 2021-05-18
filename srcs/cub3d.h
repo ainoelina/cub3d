@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/06 17:07:35 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/14 14:18:26 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/18 17:46:15 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 # define RESOLUTION_MISSING -16
 # define MAP_WALLS -17
 # define INVALID_INPUT -18
+# define TEXTURE_INVALID -19
 
 /*
 ** ~~~~~~~~~ DIRECTIONS ~~~~
@@ -92,8 +93,8 @@ typedef struct s_mlx
 
 typedef struct s_texture
 {
-	unsigned int	floor;
-	unsigned int	ceiling;
+	int	floor;
+	int	ceiling;
 	char			*north_tex;
 	char			*east_tex;
 	char			*south_tex;
@@ -278,6 +279,7 @@ void		error_handling(int error, t_all *p);
 void		check_input(t_all *p);
 void		map_check(t_all *p, t_map *m, char **map);
 void		checkmap(t_all *p, int x, int y);
+void		map_checker(t_all *p, char **map);
 
 /*
 ** ~~~~~~~~~ UTILS ~~~~
@@ -310,7 +312,7 @@ void		parse_map(t_all *p, char **array);
 void		parse_position(t_all *p);
 void		set_texture(t_all *p, char *line, char **texture, int *i);
 void		set_resolution(t_all *p, char *line, int *i);
-void		set_colour(t_all *p, char *line, unsigned int *colour, int *i);
+void		set_colour(t_all *p, char *line, int *colour, int *i);
 
 t_spr_ptr	*parse_sprites(t_all *p, int i, int j);
 
