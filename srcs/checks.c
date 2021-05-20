@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 09:54:37 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/20 14:37:25 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 17:04:01 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,8 @@ int	save_check(char *argv, char *save)
 	return (0);
 }
 
-void	check_surroundings(t_map *m, t_all *p, int x, int y)
+void	check_surroundings(char **map, t_all *p, int x, int y)
 {
-	char	**map;
-
-	p->pl->pos_check = 0;
-	map = m->map;
 	if (map[x][y] == ' ' && (map[x][y + 1] != '1' && map[x][y + 1] != ' '))
 		error_handling(MAP_WALLS, p);
 	if ((map[x][y] == '0' || map[x][y] == '2' || map[x][y] == ' ')
@@ -69,7 +65,7 @@ void	check_surroundings(t_map *m, t_all *p, int x, int y)
 		error_handling(MAP_WALLS, p);
 	if (map[x][y] == ' ' && (map[x][y + 1] == '0' || map[x][y + 1] == '2'))
 		error_handling(MAP_WALLS, p);
-	if (x == m->x_max - 1 && (map[x][y] != '1'))
+	if (x == p->map->x_max - 1 && (map[x][y] != '1'))
 		error_handling(MAP_WALLS, p);
 }
 
@@ -86,7 +82,7 @@ void	check_map(t_map *map, t_all *p)
 		{
 			if (map->map[i][j] != '1' && map->map[i][j] != 'A'
 			&& map->map[i][j] != '\0')
-				check_surroundings(map, p, i, j);
+				check_surroundings(map->map, p, i, j);
 			j++;
 		}
 		i++;
