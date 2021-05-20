@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/12 20:36:09 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/04 11:22:14 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 14:44:31 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void	draw_sprites(t_drawsprite *spr, t_mlx *mlx, t_all *p)
 		spr->x++;
 	}
 }
+
+/*
+** floor and ceiling are filled with assigned colours by splitting screen
+** in half.
+*/
 
 void 	floor_ceiling(t_all *p)
 {

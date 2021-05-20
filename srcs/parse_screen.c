@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 14:30:48 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/18 12:02:52 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 13:51:49 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	set_resolution(t_all *p, char *line, int *i)
 	p->mlx->screenh = my_atoi(line, i);
 	if (!p->mlx->screenh)
 		error_handling(RESOLUTION_INVALID, p);
+	resizing_check(p);
 	if (p->mlx->screenw <= 0 || p->mlx->screenh <= 0 || line[*i] != '\0')
 		error_handling(RESOLUTION_INVALID, p);
 }

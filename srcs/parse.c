@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 13:28:06 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/18 13:45:26 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 14:58:43 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	check_validity(char c, char *line, t_all *p)
 	int	i;
 
 	i = 0;
-	printf("line now is %s\n", line);
 	if (!(ft_strchr("RFCNSWE012", c)))
 		error_handling(INVALID_INPUT, p);
 	if ((line[i] == 'N' && line[i + 1] != 'O')
@@ -44,7 +43,6 @@ int	check_params(char *line, t_all *p)
 	int	i;
 
 	i = 0;
-	printf("%s\n", line);
 	skip_spaces(&i, line);
 	check_validity(line[i], line, p);
 	if (line[i] == 'R' && line[i + 1] == ' ')
@@ -136,11 +134,3 @@ void	parser(t_all *p, char *cub)
 	check_input(p);
 	free_lines(p);
 }
-
-	// printf("sprite location is %f, %f\n", p->spr->x, p->spr->y);
-	// printf("north: %s,\neast: %s,\nsouth: %s,\nwest: %s.\nsprite: %s.\n",
-	// 	p->txt->north_tex, p->txt->east_tex, p->txt->south_tex,
-	// 	p->txt->west_tex, p->txt->spr_tex);
-	// printf("resolution is now %i x %i\n", p->mlx->screenw, p->mlx->screenh);
-	// printf("floor color is %x, ceiling is %x\n", p->txt->floor, p->txt->ceiling);
-	// printf("player position is now x: %.1f y: %.1f\n", p->pl->x, p->pl->y);

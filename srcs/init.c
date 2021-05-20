@@ -6,11 +6,16 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 10:11:11 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/18 12:02:30 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 14:46:05 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+** initialising map by filling it with 'A' characters. this is used in case
+** some rows are longer than others.
+*/
 
 void	initialise_map(t_map *map)
 {

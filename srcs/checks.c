@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 09:54:37 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/20 12:16:26 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 14:37:25 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,16 @@ void	check_input(t_all *p)
 		error_handling(RESOLUTION_MISSING, p);
 }
 
-int	file_check(char *file, char format)
+int	cub_check(char *file)
 {
 	int	i;
 
 	i = 0;
-	if (format == 'c')
-	{
-		while (file[i])
-			i++;
-		if (file[i - 1] == 'b' && file[i - 2] == 'u' && file[i - 3] == 'c'
-			&& file[i - 4] == '.')
-			return (1);
-	}
-	i = 0;
-	if (format == 'x')
-	{
-		while (file[i])
-			i++;
-		if (file[i - 1] == 'm' && file[i - 2] == 'p' && file[i - 3] == 'x'
-			&& file[i - 4] == '.')
-			return (1);
-	}
+	while (file[i])
+		i++;
+	if (file[i - 1] == 'b' && file[i - 2] == 'u' && file[i - 3] == 'c'
+		&& file[i - 4] == '.')
+		return (1);
 	return (0);
 }
 
@@ -81,8 +69,9 @@ void	check_surroundings(t_map *m, t_all *p, int x, int y)
 		error_handling(MAP_WALLS, p);
 	if (map[x][y] == ' ' && (map[x][y + 1] == '0' || map[x][y + 1] == '2'))
 		error_handling(MAP_WALLS, p);
+	if (x == m->x_max - 1 && (map[x][y] != '1'))
+		error_handling(MAP_WALLS, p);
 }
-
 
 void	check_map(t_map *map, t_all *p)
 {

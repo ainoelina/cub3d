@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/06 17:07:35 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/20 12:16:41 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 14:37:48 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ typedef struct s_mlx
 
 typedef struct s_texture
 {
-	int	floor;
-	int	ceiling;
+	int				floor;
+	int				ceiling;
 	char			*north_tex;
 	char			*east_tex;
 	char			*south_tex;
@@ -254,7 +254,6 @@ int			close_game(t_all *p);
 int			move(t_all *p);
 int			run_game(t_all *p);
 
-
 void		start_game(t_all *p, char *cub, int screenshot);
 void		make_screenshot(t_all *p);
 
@@ -266,13 +265,12 @@ void		initialise_map(t_map *map);
 void		init_screen(t_mlx *mlx);
 void		handle_texture(t_all *p, t_texture *txt);
 
-
 /*
 ** ~~~~~~~~~ CHECK FUNCTIONS ~~~~
 */
 
 int			save_check(char *argv, char *save);
-int			file_check(char *file, char format);
+int			cub_check(char *file);
 
 void		error_handling(int error, t_all *p);
 void		check_input(t_all *p);

@@ -6,13 +6,11 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/09 11:00:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/20 12:17:25 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 14:58:00 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// remove the '\0'addition if doesn't start working 
 
 void	create_map(t_map *map, char **array, int i, int j)
 {
@@ -34,7 +32,6 @@ void	create_map(t_map *map, char **array, int i, int j)
 				last = map->y;
 		}
 		map->map[map->x][map->y] = '\0';
-		printf("%2i-map: %s\n", (i + 1), map->map[map->x]);
 		j = 0;
 		map->x++;
 		i++;

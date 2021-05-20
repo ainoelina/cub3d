@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 09:49:34 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/05 10:27:56 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 14:50:07 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	start_game(t_all *p, char *cub, int screenshot)
 
 int	main(int argc, char *argv[])
 {
-	if (argc == 2 && file_check(argv[1], 'c'))
+	if (argc == 2 && cub_check(argv[1]))
 		init_all(argv[1], 0);
-	else if (argc == 3 && file_check(argv[1], 'c')
+	else if (argc == 3 && cub_check(argv[1])
 		&& save_check(argv[2], "--save"))
 		init_all(argv[1], 1);
 	else

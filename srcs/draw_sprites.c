@@ -6,11 +6,16 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/13 16:42:34 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/04/14 16:08:21 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 14:43:11 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+** sorting sprites from the furthest to closest one. closer ones will be drawn
+** on 'top' of further ones.
+*/
 
 void	next_sprite(t_all *p, double *dist, int i)
 {

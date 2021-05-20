@@ -6,7 +6,7 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/03/01 09:11:19 by avuorio       #+#    #+#                  #
-#    Updated: 2021/05/20 12:17:40 by avuorio       ########   odam.nl          #
+#    Updated: 2021/05/20 12:34:32 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,14 @@ OBJS		= $(FILES:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) -L $(MLX) $(MLX_FLAGS) $(OBJS)
+	@$(CC) -o $(NAME) -L $(MLX) $(MLX_FLAGS) $(OBJS)
 
 clean:
 	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: 		all fclean clean re
