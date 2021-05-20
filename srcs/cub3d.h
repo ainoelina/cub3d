@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/06 17:07:35 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/18 17:46:15 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 12:16:41 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,12 +274,9 @@ void		handle_texture(t_all *p, t_texture *txt);
 int			save_check(char *argv, char *save);
 int			file_check(char *file, char format);
 
-void		check_map(t_all *p, char **map);
 void		error_handling(int error, t_all *p);
 void		check_input(t_all *p);
-void		map_check(t_all *p, t_map *m, char **map);
-void		checkmap(t_all *p, int x, int y);
-void		map_checker(t_all *p, char **map);
+void		check_map(t_map *map, t_all *p);
 
 /*
 ** ~~~~~~~~~ UTILS ~~~~

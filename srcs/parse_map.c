@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/09 11:00:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/18 17:54:58 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 12:17:25 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,5 @@ void	parse_map(t_all *p, char **array)
 	initialise_map(p->map);
 	create_map(p->map, array, i, j);
 	parse_position(p);
-//	ft_checkmap_end(p->map, p);
-//	check_map(p, p->map->map);
-//	map_check(p, p->map, p->map->map);
-//	map_checker(p->map->map);
-//	checkmap(p, p->pl->x, p->pl->y);
+	check_map(p->map, p);
 }

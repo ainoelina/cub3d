@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/09 12:03:54 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/05 13:01:08 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/20 11:59:08 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	north_south(char c, t_player *pl)
 
 void	init_player(char c, int x, int y, t_all *p)
 {
-	if (c != 'N' && c != 'E' && c != 'S' && c != 'W' && c != ' ')
+	if (c != 'N' && c != 'E' && c != 'S' && c != 'W')
 		error_handling(MAP_INVALID, p);
 	if (p->pl->pos_check > 0)
 		error_handling(PLAYER_DOUBLE, p);
@@ -74,7 +74,7 @@ void	init_player(char c, int x, int y, t_all *p)
 
 int	check_char(char c, int x, int y, t_all *p)
 {
-	if (c != '1' && c != '2' && c != '0' && c != 'A' && c != ' ')
+	if (c != '1' && c != '2' && c != '0' && c != 'A' && c != ' ' && c != '\0')
 	{
 		init_player(c, x, y, p);
 		return (1);
