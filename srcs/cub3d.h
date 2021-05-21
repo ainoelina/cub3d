@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/06 17:07:35 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/20 14:37:48 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/21 11:17:19 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,6 @@
 # define MAP_WALLS -17
 # define INVALID_INPUT -18
 # define TEXTURE_INVALID -19
-
-/*
-** ~~~~~~~~~ DIRECTIONS ~~~~
-*/
-# define NORTH 9
-# define EAST 8
-# define SOUTH 7
-# define WEST 6
-# define SPRITE 5
 
 # define BUFFER_SIZE 4096
 

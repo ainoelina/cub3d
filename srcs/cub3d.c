@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/07 09:49:34 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/20 14:50:07 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/21 11:02:42 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ int	run_game(t_all *p)
 	move(p);
 	raycast(p);
 	if (!p->screenshot)
+	{
 		mlx_put_image_to_window(p->mlx->mlx_ptr, p->mlx->win_ptr,
 			p->mlx->img_ptr, 0, 0);
+		mlx_destroy_image(p->mlx->mlx_ptr, p->mlx->img_ptr);
+	}
 	return (0);
 }
 
